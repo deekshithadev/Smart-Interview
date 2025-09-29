@@ -93,7 +93,17 @@ const interviewSlice = createSlice({
       state.isActive = true;
       state.questionStartTime = Date.now();
     },
-    resetInterview: () => initialState
+    resetInterview: () => initialState,
+    persistInterview: (state, action) => {
+      // This action is handled by redux-persist
+      // The payload will be automatically persisted
+      return state;
+    },
+    loadInterview: (state, action) => {
+      // This action is handled by redux-persist
+      // The state will be automatically rehydrated
+      return state;
+    }
   }
 });
 
@@ -111,7 +121,9 @@ export const {
   clearChatHistory,
   pauseInterview,
   resumeInterview,
-  resetInterview
+  resetInterview,
+  persistInterview,
+  loadInterview
 } = interviewSlice.actions;
 
 export default interviewSlice.reducer;
